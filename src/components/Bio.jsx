@@ -8,6 +8,8 @@ const Bio = () => {
     about:
       ' Building Newdev.io - Learn to code and connect with the best minds',
   });
+  const [editFormIsOpen, setEditFormIsOpen] = useState(false);
+  const [profilePhoto, setProfilePhoto] = useState(profileIcon);
 
   const updateUserDetails = (event) => {
     event.preventDefault();
@@ -18,8 +20,10 @@ const Bio = () => {
     setEditFormIsOpen(false);
   };
 
-  const [editFormIsOpen, setEditFormIsOpen] = useState(false);
-  const [profilePhoto, setProfilePhoto] = useState(profileIcon);
+  const updateProfilePhoto = async () => {
+    const newProfilePhoto = await getPhotoUrl('#profilePhotoInput');
+    setProfilePhoto(newProfilePhoto);
+  };
 
   const editForm = (
     <form className='edit-bio-form' onSubmit={(e) => updateUserDetails(e)}>
@@ -53,12 +57,10 @@ const Bio = () => {
     <button onClick={() => setEditFormIsOpen(true)}>Edit</button>
   );
 
-  const updateProfilePhoto = () => {};
-
   return (
     <section className='bio'>
       <input type='file' accept='image/*' name='photo' id='profilePhotoInput' />
-      <label htmlFor='profilePhotoInput'>
+      <label htmlFor='profilePhotoInput' onClick={updateProfilePhoto}>
         <div
           className='profile-photo'
           role='button'
