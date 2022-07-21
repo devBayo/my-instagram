@@ -8,26 +8,49 @@ const Bio = () => {
       ' Building Newdev.io - Learn to code and connect with the best minds',
   });
 
-
   const updateUserDetails = (event) => {
     event.preventDefault();
     setUserDetails({
       name: event.target.nameOfUser.value,
       about: event.target.aboutUser.value,
     });
+    setEditFormIsOpen(false);
   };
+
+  const [editFormIsOpen, setEditFormIsOpen] = useState(false);
 
   const editForm = (
     <form className='edit-bio-form' onSubmit={(e) => updateUserDetails(e)}>
-      <input type='text' id='' name='nameOfUser' placeholder='Your name' />
-      <input type='text' id='' name='aboutUser' placeholder='About you' />
+      <input
+        type='text'
+        id=''
+        required
+        name='nameOfUser'
+        placeholder='Your name'
+      />
+      <input
+        type='text'
+        id=''
+        required
+        name='aboutUser'
+        placeholder='About you'
+      />
       <br />
-      <button type='button' className='cancel-button'>
+      <button
+        type='button'
+        className='cancel-button'
+        onClick={() => setEditFormIsOpen(false)}
+      >
         Cancel
       </button>
       <button type='submit'>Save</button>
     </form>
   );
+
+  const editButton = (
+    <button onClick={() => setEditFormIsOpen(true)}>Edit</button>
+  );
+
   return (
     <section className='bio'>
       <div className='profile-photo' role='button' title='Click to edit photo'>
@@ -36,8 +59,8 @@ const Bio = () => {
       <div className='profile-info'>
         <p className='name'>{userDetails.name}</p>
         <p className='about'>{userDetails.about}</p>
-        <button>Edit</button>
-        {editForm}
+
+        {editFormIsOpen ? editForm : editButton}
       </div>
     </section>
   );
