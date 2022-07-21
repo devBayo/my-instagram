@@ -1,10 +1,9 @@
-import Nav from './components/Nav';
-import Bio from './components/Bio';
+import { Nav, Bio } from './components';
 import './App.css';
 
 const App = () => {
   return (
-    <div className='App'>
+    <div className='container'>
       <Nav />
       <Bio />
     </div>

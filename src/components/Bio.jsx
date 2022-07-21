@@ -5,6 +5,11 @@ const Bio = () => {
     <form className='edit-bio-form'>
       <input type='text' id='' placeholder='Your name' />
       <input type='text' id='' placeholder='About you' />
+      <br />
+      <button type='button' className='cancel-button'>
+        Cancel
+      </button>
+      <button type='button'>Save</button>
     </form>
   );
   return (
