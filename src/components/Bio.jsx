@@ -1,6 +1,7 @@
 import getPhotoUrl from 'get-photo-url';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import profileIcon from '../assets/profileIcon.svg';
+import { db } from '../dexie';
 
 const Bio = () => {
   const [userDetails, setUserDetails] = useState({
@@ -11,18 +12,32 @@ const Bio = () => {
   const [editFormIsOpen, setEditFormIsOpen] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState(profileIcon);
 
-  const updateUserDetails = (event) => {
-    event.preventDefault();
-    setUserDetails({
+  useEffect(() => {
+    const setDataFromDb = async () => {
+      const userDetailsFromDb = await db.bio.get('info');
+      const profilePhotoFromDb = await db.bio.get('profilePhoto');
+      userDetailsFromDb && setUserDetails(userDetailsFromDb);
+      profilePhotoFromDb && setProfilePhoto(profilePhotoFromDb);
+    };
+
+    setDataFromDb();
+  });
+
+  const updateUserDetails = async (event) => {
+    const objectData = {
       name: event.target.nameOfUser.value,
       about: event.target.aboutUser.value,
-    });
+    };
+    event.preventDefault();
+    setUserDetails(objectData);
+    await db.bio.put(objectData, 'info');
     setEditFormIsOpen(false);
   };
 
   const updateProfilePhoto = async () => {
     const newProfilePhoto = await getPhotoUrl('#profilePhotoInput');
     setProfilePhoto(newProfilePhoto);
+    await db.bio.put(newProfilePhoto, 'profilePhoto');
   };
 
   const editForm = (
@@ -30,14 +45,14 @@ const Bio = () => {
       <input
         type='text'
         id=''
-        required
+        defaultValue={userDetails?.name}
         name='nameOfUser'
         placeholder='Your name'
       />
       <input
         type='text'
         id=''
-        required
+        defaultValue={userDetails.about}
         name='aboutUser'
         placeholder='About you'
       />
