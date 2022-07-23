@@ -21,7 +21,7 @@ const Bio = () => {
     };
 
     setDataFromDb();
-  });
+  }, []);
 
   const updateUserDetails = async (event) => {
     const objectData = {
