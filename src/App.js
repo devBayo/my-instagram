@@ -1,5 +1,6 @@
 import { Nav, Bio, Gallery } from './components';
-import './App.css';
+import './css/App.css';
+import './css/Queries.css';
 
 const App = () => {
   return (

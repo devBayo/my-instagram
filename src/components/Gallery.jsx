@@ -19,7 +19,9 @@ const Gallery = () => {
     <>
       <input type='file' name='photo' id='addPhotoInput' />
       <label htmlFor='addPhotoInput' onClick={addPhoto}>
-        <i className='add-photo-button fas fa-plus-square'></i>
+        {/* <i className='add-photo-button fas 
+        fa-plus-square'></i> */}
+        <p className='add-photo-button'>+</p>
       </label>
 
       <section className='gallery'>

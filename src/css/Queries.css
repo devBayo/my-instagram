@@ -1,0 +1,162 @@
+@media screen and (max-width: 1230px) {
+  .add-photo-button {
+    right: 2.5em;
+  }
+}
+
+@media screen and (max-width: 1092px) {
+  .container {
+    max-width: 50em;
+  }
+
+  .item {
+    height: 14.5em;
+    width: 14.5em;
+  }
+
+  .add-photo-button {
+    right: 2em;
+  }
+  .bio {
+    gap: 3em;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .add-photo-button {
+    right: 1em;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .container {
+    max-width: 35em;
+  }
+
+  .item {
+    height: 13.5em;
+    width: 13.5em;
+  }
+
+  .add-photo-button {
+    right: 2.5em;
+  }
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 635px) {
+  .profile-photo {
+    width: 8em;
+    height: 8em;
+  }
+  .bio {
+    padding: 0 1em 2em 3em;
+  }
+  .item {
+    height: 11.5em;
+    width: 11.5em;
+  }
+
+  .add-photo-button {
+    right: 2em;
+  }
+
+  .gallery {
+    max-width: 27em;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 585px) {
+  .container {
+    margin: 0;
+  }
+  
+  .nav {
+    grid-template-columns: auto 1fr;
+  }
+
+  .logo {
+    margin-left: 2em;
+  }
+
+  .search {
+    justify-self: end;
+    margin-right: 2em;
+  }
+
+  .nav-links {
+    border-top: 0.07em solid #dbdbdb;
+    width: 80%;
+    position: fixed;
+    bottom: 0;
+    background-color: #fbfbfb;
+    z-index: 1;
+    height: 4em;
+    padding: 0 10%;
+  }
+
+  .nav-links i {
+    transform: scale(2);
+  }
+
+  .gallery {
+    margin-bottom: 6em;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .bio {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+    padding: 0 1em 2em 1em;
+    text-align: center;
+    gap: 0;
+  }
+  .add-photo-button {
+    right: 1.5em;
+  }
+
+  .item {
+    height: 15.5em;
+    width: 15.5em;
+  }
+  .gallery {
+    max-width: 22em;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .search {
+    width: 10em;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .item {
+    height: 13.5em;
+    width: 13.5em;
+  }
+
+  .add-photo-button {
+    right: 1.1em;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .logo {
+    margin-left: 1em;
+  }
+
+  .search {
+    margin-right: 1em;
+  }
+}
