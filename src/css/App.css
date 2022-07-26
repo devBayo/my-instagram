@@ -41,6 +41,7 @@ nav {
   height: 2em;
   margin: 0.8em;
   width: 15.5em;
+  padding: 0 4px;
   border: 0.07em solid #dbdbdb;
   border-radius: 0.2em;
   justify-self: center;

@@ -1,27 +1,21 @@
+import { useLiveQuery } from 'dexie-react-hooks';
 import getPhotoUrl from 'get-photo-url';
 import { useEffect, useState } from 'react';
 import profileIcon from '../assets/profileIcon.svg';
 import { db } from '../dexie';
 
 const Bio = () => {
-  const [userDetails, setUserDetails] = useState({
-    name: 'Ebenezer Don',
-    about:
-      ' Building Newdev.io - Learn to code and connect with the best minds',
-  });
+  const defaultDetails = {
+    name: 'John Doe',
+    about: 'Lorem ipsium',
+  };
+
+  const userDetails =
+    useLiveQuery(() => db.bio.get('info'), []) || defaultDetails;
+  const profilePhoto =
+    useLiveQuery(() => db.bio.get('profilePhoto'), []) || profileIcon;
+
   const [editFormIsOpen, setEditFormIsOpen] = useState(false);
-  const [profilePhoto, setProfilePhoto] = useState(profileIcon);
-
-  useEffect(() => {
-    const setDataFromDb = async () => {
-      const userDetailsFromDb = await db.bio.get('info');
-      const profilePhotoFromDb = await db.bio.get('profilePhoto');
-      userDetailsFromDb && setUserDetails(userDetailsFromDb);
-      profilePhotoFromDb && setProfilePhoto(profilePhotoFromDb);
-    };
-
-    setDataFromDb();
-  }, []);
 
   const updateUserDetails = async (event) => {
     const objectData = {
@@ -29,14 +23,12 @@ const Bio = () => {
       about: event.target.aboutUser.value,
     };
     event.preventDefault();
-    setUserDetails(objectData);
     await db.bio.put(objectData, 'info');
     setEditFormIsOpen(false);
   };
 
   const updateProfilePhoto = async () => {
     const newProfilePhoto = await getPhotoUrl('#profilePhotoInput');
-    setProfilePhoto(newProfilePhoto);
     await db.bio.put(newProfilePhoto, 'profilePhoto');
   };
 
@@ -52,7 +44,7 @@ const Bio = () => {
       <input
         type='text'
         id=''
-        defaultValue={userDetails.about}
+        defaultValue={userDetails?.about}
         name='aboutUser'
         placeholder='About you'
       />
