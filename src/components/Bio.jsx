@@ -1,19 +1,19 @@
-import { useLiveQuery } from 'dexie-react-hooks';
-import getPhotoUrl from 'get-photo-url';
-import { useEffect, useState } from 'react';
-import profileIcon from '../assets/profileIcon.svg';
-import { db } from '../dexie';
+import { useLiveQuery } from "dexie-react-hooks";
+import getPhotoUrl from "get-photo-url";
+import { useState } from "react";
+import profileIcon from "../assets/profileIcon.svg";
+import { db } from "../dexie";
 
 const Bio = () => {
   const defaultDetails = {
-    name: 'John Doe',
-    about: 'Lorem ipsium',
+    name: "John Doe",
+    about: "Lorem ipsium",
   };
 
   const userDetails =
-    useLiveQuery(() => db.bio.get('info'), []) || defaultDetails;
+    useLiveQuery(() => db.bio.get("info"), []) || defaultDetails;
   const profilePhoto =
-    useLiveQuery(() => db.bio.get('profilePhoto'), []) || profileIcon;
+    useLiveQuery(() => db.bio.get("profilePhoto"), []) || profileIcon;
 
   const [editFormIsOpen, setEditFormIsOpen] = useState(false);
 
@@ -23,40 +23,40 @@ const Bio = () => {
       about: event.target.aboutUser.value,
     };
     event.preventDefault();
-    await db.bio.put(objectData, 'info');
+    await db.bio.put(objectData, "info");
     setEditFormIsOpen(false);
   };
 
   const updateProfilePhoto = async () => {
-    const newProfilePhoto = await getPhotoUrl('#profilePhotoInput');
-    await db.bio.put(newProfilePhoto, 'profilePhoto');
+    const newProfilePhoto = await getPhotoUrl("#profilePhotoInput");
+    await db.bio.put(newProfilePhoto, "profilePhoto");
   };
 
   const editForm = (
-    <form className='edit-bio-form' onSubmit={(e) => updateUserDetails(e)}>
+    <form className="edit-bio-form" onSubmit={(e) => updateUserDetails(e)}>
       <input
-        type='text'
-        id=''
+        type="text"
+        id=""
         defaultValue={userDetails?.name}
-        name='nameOfUser'
-        placeholder='Your name'
+        name="nameOfUser"
+        placeholder="Your name"
       />
       <input
-        type='text'
-        id=''
+        type="text"
+        id=""
         defaultValue={userDetails?.about}
-        name='aboutUser'
-        placeholder='About you'
+        name="aboutUser"
+        placeholder="About you"
       />
       <br />
       <button
-        type='button'
-        className='cancel-button'
+        type="button"
+        className="cancel-button"
         onClick={() => setEditFormIsOpen(false)}
       >
         Cancel
       </button>
-      <button type='submit'>Save</button>
+      <button type="submit">Save</button>
     </form>
   );
 
@@ -65,20 +65,20 @@ const Bio = () => {
   );
 
   return (
-    <section className='bio'>
-      <input type='file' accept='image/*' name='photo' id='profilePhotoInput' />
-      <label htmlFor='profilePhotoInput' onClick={updateProfilePhoto}>
+    <section className="bio">
+      <input type="file" accept="image/*" name="photo" id="profilePhotoInput" />
+      <label htmlFor="profilePhotoInput" onClick={updateProfilePhoto}>
         <div
-          className='profile-photo'
-          role='button'
-          title='Click to edit photo'
+          className="profile-photo"
+          role="button"
+          title="Click to edit photo"
         >
-          <img src={profilePhoto} alt='profile' />
+          <img src={profilePhoto} alt="profile" />
         </div>
       </label>
-      <div className='profile-info'>
-        <p className='name'>{userDetails.name}</p>
-        <p className='about'>{userDetails.about}</p>
+      <div className="profile-info">
+        <p className="name">{userDetails.name}</p>
+        <p className="about">{userDetails.about}</p>
 
         {editFormIsOpen ? editForm : editButton}
       </div>

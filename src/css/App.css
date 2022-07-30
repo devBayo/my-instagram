@@ -1,6 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+html {
+  font-size: 62.5%;
+}
+
 body {
   background-color: #fafafa;
   margin: 0;
+  font-family: "Rubik", sans-serif;
 }
 
 button {
@@ -17,15 +24,16 @@ nav {
   position: fixed;
   top: 0;
   background-color: #fff;
-  height: 3.3em;
-  line-height: 3.3em;
+  height: 5.3rem;
+  line-height: 5.3rem;
   width: 100%;
   border-bottom: 0.1em solid #dbdbdb;
 }
 
 .nav {
   display: grid;
-  grid-template-columns: auto 1.7fr 0.7fr;
+  grid-template-columns: auto 1.7fr 0.8fr;
+  align-items: center;
 }
 
 .logo {
@@ -38,12 +46,11 @@ nav {
 
 .search {
   background: #fafafa;
-  height: 2em;
-  margin: 0.8em;
-  width: 15.5em;
+  height: 3.2rem;
+  width: 25rem;
   padding: 0 4px;
-  border: 0.07em solid #dbdbdb;
-  border-radius: 0.2em;
+  border: 1.2px solid #dbdbdb;
+  border-radius: 3.2px;
   justify-self: center;
 }
 
@@ -64,7 +71,7 @@ nav {
 }
 
 .container {
-  max-width: 60em;
+  max-width: 96rem;
   margin: 0 auto;
 }
 
@@ -72,11 +79,10 @@ nav {
   display: grid;
   grid-template-columns: 1fr 2fr;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 0em 2em 2em 2em;
-  align-items: center;
+  padding: 0 3.2rem 3.2rem 3.2rem;
   border-bottom: 0.2px solid #dbdbdb;
-  margin-top: 5em;
-  margin-bottom: 2em;
+  margin-top: 8rem;
+  margin-bottom: 3.2rem;
 }
 
 #profilePhotoInput {
@@ -85,10 +91,10 @@ nav {
 
 .profile-photo {
   background: #000;
-  width: 10em;
-  height: 10em;
+  width: 16rem;
+  height: 16rem;
   border-radius: 50%;
-  margin-top: 0.5em;
+  margin-top: 8px;
 }
 
 .profile-photo img {
@@ -104,22 +110,22 @@ nav {
 }
 
 .profile-info .name {
-  font-size: 1.7em;
+  font-size: 2.72rem;
   color: #545454;
   margin-bottom: 0;
 }
 
 .profile-info .about {
-  font-size: 1.2em;
+  font-size: 1.92rem;
   color: #545454;
 }
 
 .profile-info button {
   background-color: #0095f6;
   color: #fff;
-  font-size: 1.1em;
-  width: 6em;
-  height: 2em;
+  font-size: 1.76rem;
+  width: 9.6rem;
+  height: 3.2rem;
 }
 
 .profile-info button:hover {
@@ -128,15 +134,15 @@ nav {
 
 .edit-bio-form input {
   width: 50%;
-  height: 2em;
-  border: 0.1em solid #dbdbdb;
-  border-radius: 0.2em;
-  padding: 0.5em;
-  margin-top: 0.5em;
+  height: 3.2rem;
+  border: 1.6px solid #dbdbdb;
+  border-radius: 3.2px;
+  padding: 0.8rem;
+  margin-top: 0.8rem;
 }
 
 .edit-bio-form button {
-  margin: 1em 1em 0 0;
+  margin: 1.6rem 1.6rem 0 0;
 }
 
 .edit-bio-form .cancel-button {
@@ -147,30 +153,45 @@ nav {
   display: none;
 }
 
+.clear-button,
 .add-photo-button {
-  z-index: 10;
+  z-index: 5;
   transform: scale(3);
   position: fixed;
-  bottom: 5em;
-  right: 5em;
+  bottom: 8rem;
+  right: 8rem;
   cursor: pointer;
+  font-size: 1.6rem;
+  background: linear-gradient(to bottom right, #0081d6, #fff);
+  color: transparent;
+  background-clip: text;
+}
+
+.clear-button {
+  font-size: 0.9rem;
+  bottom: 18rem;
+  color: red;
 }
 
 .gallery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  row-gap: 1.7em;
-  column-gap: 1em;
+  row-gap: 2.72rem;
+  column-gap: 1.6rem;
   justify-items: center;
-  margin-bottom: 1.5em;
+  margin-bottom: 2.4rem;
+}
+
+.empty-gallery {
+  color: #444;
+  font-size: 1.8rem;
 }
 
 .item {
-  height: 17.5em;
-  width: 17.5em;
+  height: 28rem;
+  width: 28rem;
   background: #000;
   cursor: pointer;
-  /*  */
   position: relative;
 }
 
@@ -189,7 +210,7 @@ nav {
   position: absolute;
   top: 50%;
   right: 50%;
-  padding: 0.1em 0.3em;
+  padding: 1.6px 4.8px;
   background-color: #890000;
   color: #fff;
   border: 1px solid #c8c8c8;
@@ -202,4 +223,78 @@ nav {
 
 .item:hover .delete-button {
   opacity: 1;
+}
+
+#loader {
+  width: 6rem;
+  height: 6rem;
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #3498db;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  left: 46%;
+  top: 50%;
+  z-index: 10;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 9;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 60rem;
+  background-color: #f3f3f3;
+  padding: 3rem 4rem;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.5s;
+}
+
+.modal p {
+  font-size: 1.6rem;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+.modal button {
+  padding: 1rem;
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-no {
+  background-color: #0081d6;
+  margin-right: 2rem;
+}
+
+.btn-yes {
+  background-color: rgb(228, 23, 23);
 }
