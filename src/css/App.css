@@ -65,8 +65,8 @@ nav {
   justify-content: space-between;
 }
 
-.nav-links i {
-  transform: scale(1.6);
+.nav-links img {
+  height: 2.2rem;
   color: #252525;
 }
 
@@ -156,21 +156,26 @@ nav {
 .clear-button,
 .add-photo-button {
   z-index: 5;
-  transform: scale(3);
   position: fixed;
-  bottom: 8rem;
-  right: 8rem;
   cursor: pointer;
+  margin: 0;
+}
+
+.add-photo-button {
+  right: 8rem;
+  transform: scale(3);
   font-size: 1.6rem;
   background: linear-gradient(to bottom right, #0081d6, #fff);
   color: transparent;
+  bottom: 8rem;
   background-clip: text;
 }
 
 .clear-button {
-  font-size: 0.9rem;
+  right: 7.5rem;
+  height: 2.5rem;
+  width: 2.5rem;
   bottom: 18rem;
-  color: red;
 }
 
 .gallery {
@@ -185,6 +190,7 @@ nav {
 .empty-gallery {
   color: #444;
   font-size: 1.8rem;
+  grid-column: 1/-1;
 }
 
 .item {

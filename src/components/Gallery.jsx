@@ -1,3 +1,4 @@
+import trashIcon from "../assets/trash.svg";
 import { useLiveQuery } from "dexie-react-hooks";
 import getPhotoUrl from "get-photo-url";
 import { useState } from "react";
@@ -26,12 +27,14 @@ const Gallery = () => {
   );
 
   const trash = (
-    <i
-      className="fas fa-trash clear-button"
+    <img
+      src={trashIcon}
+      alt="Trash icon"
+      className="clear-button"
       onClick={() => {
         setShowModal(true);
       }}
-    ></i>
+    />
   );
 
   const modal = (
