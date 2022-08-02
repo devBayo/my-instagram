@@ -5,18 +5,20 @@ import profileIcon from "../assets/profileIcon.svg";
 import { db } from "../dexie";
 
 const Bio = () => {
+  //
   const defaultDetails = {
     name: "John Doe",
     about: "Lorem ipsium",
   };
 
+  // Hooks
   const userDetails =
     useLiveQuery(() => db.bio.get("info"), []) || defaultDetails;
   const profilePhoto =
     useLiveQuery(() => db.bio.get("profilePhoto"), []) || profileIcon;
-
   const [editFormIsOpen, setEditFormIsOpen] = useState(false);
 
+  // Functions
   const updateUserDetails = async (event) => {
     const objectData = {
       name: event.target.nameOfUser.value,
@@ -32,6 +34,7 @@ const Bio = () => {
     await db.bio.put(newProfilePhoto, "profilePhoto");
   };
 
+  // Variables
   const editForm = (
     <form className="edit-bio-form" onSubmit={(e) => updateUserDetails(e)}>
       <input
@@ -64,6 +67,7 @@ const Bio = () => {
     <button onClick={() => setEditFormIsOpen(true)}>Edit</button>
   );
 
+  //-----
   return (
     <section className="bio">
       <input type="file" accept="image/*" name="photo" id="profilePhotoInput" />

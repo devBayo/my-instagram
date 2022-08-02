@@ -55,7 +55,7 @@ const Gallery = () => {
       {allPhotos?.length > 0 && clearGalleryIcon}
       {showClearGalleryModal && (
         <Modal
-          text={"clear your gallery"}
+          text={"clear your gallery?"}
           hideModal={() => setShowClearGalleryModal(false)}
           action={() => db.gallery.clear()}
         />
@@ -64,7 +64,7 @@ const Gallery = () => {
       {/* Delete Photo Modal */}
       {showDeletePhotoModal && (
         <Modal
-          text={"delete this photo"}
+          text={"delete this photo?"}
           hideModal={() => setShowDeletePhotoModal(false)}
           action={() => removePhoto(photoId)}
         />
