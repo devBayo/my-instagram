@@ -3,14 +3,18 @@ import { useLiveQuery } from "dexie-react-hooks";
 import getPhotoUrl from "get-photo-url";
 import { useState } from "react";
 import { db } from "../dexie";
+import Modal from "./Modal";
 
 const Gallery = () => {
-  const [showModal, setShowModal] = useState(false);
-
+  // Hooks
+  const [showClearGalleryModal, setShowClearGalleryModal] = useState(false);
+  const [showDeletePhotoModal, setShowDeletePhotoModal] = useState(false);
+  const [photoId, setPhotoId] = useState();
   const allPhotos = useLiveQuery(() => db.gallery.reverse().toArray(), []);
 
+  // Functions
   const addPhoto = async () => {
-    db.gallery.add({
+    await db.gallery.add({
       url: await getPhotoUrl("#addPhotoInput"),
     });
   };
@@ -19,6 +23,7 @@ const Gallery = () => {
     await db.gallery.delete(id);
   };
 
+  // Variables
   const loader = (
     <>
       <div id="loader"></div>
@@ -26,68 +31,60 @@ const Gallery = () => {
     </>
   );
 
-  const trash = (
+  const clearGalleryIcon = (
     <img
       src={trashIcon}
       alt="Trash icon"
       className="clear-button"
       onClick={() => {
-        setShowModal(true);
+        setShowClearGalleryModal(true);
       }}
     />
   );
 
-  const modal = (
-    <>
-      <div class="modal">
-        <p>Are you sure you want to clear your gallery?</p>
-
-        <div className="btns">
-          <button
-            className="btn-no"
-            onClick={() => {
-              setShowModal(false);
-            }}
-          >
-            No
-          </button>
-          <button
-            className="btn-yes"
-            onClick={() => {
-              db.gallery.clear();
-              setShowModal(false);
-            }}
-          >
-            Yes
-          </button>
-        </div>
-      </div>
-      <div className="overlay"></div>
-    </>
-  );
-
+  //------
   return (
     <>
+      {/* Add to gallery */}
       <input type="file" name="photo" id="addPhotoInput" />
       <label htmlFor="addPhotoInput" onClick={addPhoto}>
         <p className="add-photo-button">+</p>
       </label>
 
-      {allPhotos?.length > 0 && trash}
-      {showModal && modal}
+      {/* Clear gallery Modal*/}
+      {allPhotos?.length > 0 && clearGalleryIcon}
+      {showClearGalleryModal && (
+        <Modal
+          text={"clear your gallery"}
+          hideModal={() => setShowClearGalleryModal(false)}
+          action={() => db.gallery.clear()}
+        />
+      )}
+
+      {/* Delete Photo Modal */}
+      {showDeletePhotoModal && (
+        <Modal
+          text={"delete this photo"}
+          hideModal={() => setShowDeletePhotoModal(false)}
+          action={() => removePhoto(photoId)}
+        />
+      )}
 
       <section className="gallery">
         {!allPhotos && loader}
+
         {allPhotos?.length === 0 && (
           <h1 className="empty-gallery">Your gallery is empty.</h1>
         )}
+
         {allPhotos?.map((photo) => (
           <div className="item" key={photo.id}>
             <img src={photo.url} className="item-image" alt="Gallery item" />
             <button
               className="delete-button"
               onClick={() => {
-                removePhoto(photo.id);
+                setPhotoId(photo.id);
+                setShowDeletePhotoModal(true);
               }}
             >
               Delete

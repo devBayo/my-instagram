@@ -213,6 +213,7 @@ nav {
 
 .delete-button {
   opacity: 0;
+  font-size: 1.4rem;
   position: absolute;
   top: 50%;
   right: 50%;
@@ -283,6 +284,7 @@ nav {
   font-size: 1.6rem;
   margin: 0;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .modal button {
