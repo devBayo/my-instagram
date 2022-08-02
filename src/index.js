@@ -8,7 +8,7 @@ root.render(
     <App />
   </React.StrictMode>
 );
-serviceWorker.register();
+ServiceWorker.register();
 //Cache cdn files and external links
 workbox.routing.registerRoute(
   new RegExp("https:.*.(css|js|json|)"),
