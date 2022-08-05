@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "cra-template-pwa": "^2.0.0",
     "dexie": "^3.2.2",
     "dexie-react-hooks": "^1.1.1",
     "get-photo-url": "^1.0.3",
