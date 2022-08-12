@@ -1,52 +1,52 @@
-import { useLiveQuery } from "dexie-react-hooks";
-import getPhotoUrl from "get-photo-url";
-import { useState } from "react";
-import profileIcon from "../assets/profileIcon.svg";
-import { db } from "../dexie";
+import { useLiveQuery } from 'dexie-react-hooks';
+import getPhotoUrl from 'get-photo-url';
+import { useState } from 'react';
+import profileIcon from '../assets/profileIcon.svg';
+import { db } from '../dexie';
 
 const Bio = () => {
   //
   const defaultDetails = {
-    name: "John Doe",
-    about: "Lorem ipsium",
+    name: 'John Doe',
+    about: 'Lorem ipsium',
   };
 
   // Hooks
   const userDetails =
-    useLiveQuery(() => db.bio.get("info"), []) || defaultDetails;
+    useLiveQuery(() => db.bio.get('info'), []) || defaultDetails;
   const profilePhoto =
-    useLiveQuery(() => db.bio.get("profilePhoto"), []) || profileIcon;
+    useLiveQuery(() => db.bio.get('profilePhoto'), []) || profileIcon;
   const [editFormIsOpen, setEditFormIsOpen] = useState(false);
 
   // Functions
-  const updateUserDetails = async (event) => {
+  const updateUserDetails = async event => {
     const objectData = {
       name: event.target.nameOfUser.value,
       about: event.target.aboutUser.value,
     };
     event.preventDefault();
-    await db.bio.put(objectData, "info");
+    await db.bio.put(objectData, 'info');
     setEditFormIsOpen(false);
   };
 
   const updateProfilePhoto = async () => {
-    const newProfilePhoto = await getPhotoUrl("#profilePhotoInput");
-    await db.bio.put(newProfilePhoto, "profilePhoto");
+    const newProfilePhoto = await getPhotoUrl('#profilePhotoInput');
+    await db.bio.put(newProfilePhoto, 'profilePhoto');
   };
 
   // Variables
   const editForm = (
-    <form className="edit-bio-form" onSubmit={(e) => updateUserDetails(e)}>
+    <form className="edit-bio-form" onSubmit={e => updateUserDetails(e)}>
       <input
         type="text"
-        id=""
+        required
         defaultValue={userDetails?.name}
         name="nameOfUser"
         placeholder="Your name"
       />
       <input
         type="text"
-        id=""
+        required
         defaultValue={userDetails?.about}
         name="aboutUser"
         placeholder="About you"

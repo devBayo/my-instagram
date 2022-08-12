@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 html {
   font-size: 62.5%;
@@ -7,7 +7,7 @@ html {
 body {
   background-color: #fafafa;
   margin: 0;
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
 .container {
@@ -167,7 +167,7 @@ nav {
   right: 8rem;
   transform: scale(3);
   font-size: 1.6rem;
-  background: linear-gradient(to bottom right, #0081d6, #fff);
+  background: linear-gradient(to bottom right, #000, #000);
   color: transparent;
   bottom: 8rem;
   background-clip: text;
