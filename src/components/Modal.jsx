@@ -19,7 +19,7 @@ const Modal = ({ text, hideModal, action }) => {
           </button>
         </div>
       </div>
-      <div className="overlay"></div>
+      <div className="overlay" onClick={hideModal}></div>
     </>
   );
 };
